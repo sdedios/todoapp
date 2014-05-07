@@ -11,17 +11,17 @@ define(
     // define module
     function (app)
     {
+        // create controller
         app.controller('ProjectsController',
-        [
-            '$scope',
-
             function ($scope)
             {
+                // define page data
                 $scope.page =
                 {
                     heading: 'Welcome',
                     username: 'Nascent'
                 };
-            }
-        ]);
+
+                // TODO: define page methods
+            });
     });

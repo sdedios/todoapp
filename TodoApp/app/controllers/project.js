@@ -11,16 +11,19 @@ define(
     // define module
     function (app)
     {
+        // create controller
         app.controller('ProjectController',
-        [
-            '$scope',
-
-            function ($scope)
+            function ($scope, $location, $routeParams)
             {
+                // resolve route parameters
+                var projectId = $routeParams.projectId;
+
+                // define page data
                 $scope.page =
                 {
-                    heading: 'Welcome'
+                    projectId: projectId
                 };
-            }
-        ]);
+
+                // define page methods
+            });
     });
