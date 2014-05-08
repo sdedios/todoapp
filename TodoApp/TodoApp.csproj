@@ -113,7 +113,6 @@
   <ItemGroup>
     <Folder Include="app\css\" />
     <Folder Include="app\img\" />
-    <Folder Include="app\services\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
@@ -138,8 +137,10 @@
     <Content Include="app\bootstrap.js" />
     <Content Include="app\controllers\project.js" />
     <Content Include="app\controllers\projects.js" />
+    <Content Include="app\index.html" />
     <Content Include="app\lib\jquery.js" />
     <Content Include="app\routes.js" />
+    <Content Include="app\services\projectApi.js" />
     <Content Include="app\views\project.html" />
     <Content Include="app\views\projects.html" />
     <Content Include="favicon.ico" />
@@ -165,9 +166,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\Error.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\App\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

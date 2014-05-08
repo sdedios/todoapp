@@ -5,7 +5,8 @@ define(
 
     // load dependencies
     [
-        'app'
+        'app',
+        'services/projectApi'
     ],
 
     // define module
@@ -13,7 +14,7 @@ define(
     {
         // create controller
         app.controller('ProjectsController',
-            function ($scope, $q, $resource)
+            function ($scope, ProjectApi)
             {
                 // define page data
                 $scope.page =
@@ -21,12 +22,8 @@ define(
                     heading: 'Welcome',
                     username: 'Nascent'
                 };
-                var deferred = $q.defer();
 
-                var Project = $resource('api/project/:projectId',
-                {
-                    projectId: '@id'
-                });
-                $scope.projects = Project.query();
+                // query projects
+                $scope.projects = ProjectApi.query();
             });
     });

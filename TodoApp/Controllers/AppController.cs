@@ -7,7 +7,7 @@ namespace TodoApp.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return new FilePathResult("~/app/index.html", "text/html");
         }
     }
 }
