@@ -14,7 +14,8 @@ define(
         // define app module/dependencies
         var app = angular.module('app',
         [
-            'ngRoute'
+            'ngRoute',
+            'ngResource'
         ]);
 
         // configure app module
@@ -22,13 +23,16 @@ define(
         [
             '$routeProvider',
             '$locationProvider',
+            '$resourceProvider',
             '$controllerProvider',
             '$filterProvider',
             '$provide',
 
-            function ($routeProvider, $locationProvider, $controllerProvider, $filterProvider, $provide)
+            function ($routeProvider, $locationProvider, $resourceProvider,
+                $controllerProvider, $filterProvider, $provide)
             {
                 // setup app module as a service locator
+                app.resource = $resourceProvider.register;
                 app.controller = $controllerProvider.register;
                 app.filter = $filterProvider.register;
                 app.factory = $provide.factory;

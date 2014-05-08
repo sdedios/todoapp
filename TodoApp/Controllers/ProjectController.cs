@@ -11,26 +11,26 @@ namespace TodoApp.Controllers
         public HttpResponseMessage Get()
         {
             return Request.CreateResponse(HttpStatusCode.OK,
-                new SuccessResponse
+                new object[]
                 {
-                    data = new object[]
+                    new 
                     {
-                        new 
-                        {
-                            name = "TELUS Beta",
-                            owner = "Edward Sit"
-                        },
-                        new 
-                        {
-                            name = "Zynga",
-                            owner = "Andrew Hinton"
-                        },
-                        new 
-                        {
-                            name = "LCAB",
-                            owner = "Camille Lawrence"
-                        }
-                    }                    
+                        id = 1,
+                        name = "TELUS Beta",
+                        owner = "Edward Sit"
+                    },
+                    new 
+                    {
+                        id = 2,
+                        name = "Zynga",
+                        owner = "Andrew Hinton"
+                    },
+                    new 
+                    {
+                        id = 3,
+                        name = "LCAB",
+                        owner = "Camille Lawrence"
+                    }
                 });
         }
     }

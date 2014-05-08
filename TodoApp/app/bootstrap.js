@@ -7,7 +7,8 @@ require.config(
     {
         'jquery': 'lib/jquery',
         'angular': 'lib/angular',
-        'angular-route': 'lib/angular-route'
+        'angular-route': 'lib/angular-route',
+        'angular-resource': 'lib/angular-resource'
     },
 
     // module dependencies
@@ -20,13 +21,21 @@ require.config(
                 'angular'
             ]
         },
+        'angular-resource':
+        {
+            deps:
+            [
+                'angular'
+            ]
+        },
         'app':
         {
             deps:
             [
                 'jquery',
                 'angular',
-                'angular-route'
+                'angular-route',
+                'angular-resource'
             ]
         }
     }

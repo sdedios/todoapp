@@ -13,7 +13,7 @@ define(
     {
         // create controller
         app.controller('ProjectsController',
-            function ($scope, $q)
+            function ($scope, $q, $resource)
             {
                 // define page data
                 $scope.page =
@@ -23,49 +23,10 @@ define(
                 };
                 var deferred = $q.defer();
 
-                // query project data                
-                $.ajax(
-                    {
-                        type: 'GET',
-                        url: 'api/project',
-                        dataType: 'json'
-                    })
-
-                    // transform
-                    .done(function (json)
-                    {
-                        // bind to project data on success
-                        if (json.status === 'success')
-                        {
-                            deferred.resolve(json.data);
-                        }
-
-                            // or handle error
-                        else
-                        {
-                            deferred.reject([]);
-                        }
-                    })
-
-                    // error handler
-                    .fail(function ()
-                    {
-                        alert("error");
-                        deferred.reject([]);
-                    });
-
-                // defer handling of response
-                deferred.promise.then(
-                    function (projects)
-                    {
-                        $scope.projects = projects;
-                    },
-                    function ()
-                    {
-                        $scope.projects = undefined;
-                    });
-
-
-                // TODO: define page methods
+                var Project = $resource('api/project/:projectId',
+                {
+                    projectId: '@id'
+                });
+                $scope.projects = Project.query();
             });
     });
