@@ -7,6 +7,27 @@
         <h2>Hello {{page.username}}!</h2>
     </div>
     <div>
+        <input type="text" ng-model="search" class="search-query" placeholder="Search" />
+        <table>
+            <thead>
+                <tr>
+                    <th>Project</th>
+                    <th>Owner</th>
+                    <th><a href="#/projects/new"><i class="icon-plus-sign">+</i></a></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="project in projects | filter:search | orderBy:'name'">
+                    <td><a href="#">{{project.name}}</a></td>
+                    <td>{{project.owner}}</td>
+                    <td>
+                        <a href="#/edit/{{project.$id}}"><i class="icon-pencil"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
         <a href="#/projects/4">View Project</a>
     </div>
 </div>

@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using System.Net.Http.Headers;
 using System.Web.Http;
+
 
 namespace TodoApp
 {
@@ -12,12 +12,23 @@ namespace TodoApp
             // perform basic mappings
             config.MapHttpAttributeRoutes();
 
-            // define default route
+            // register api routes
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+               name: "CoopApi",
+               routeTemplate: "api/{controller}/{action}/{id}",
+               defaults: new
+               {
+                   action = RouteParameter.Optional,
+                   id = RouteParameter.Optional
+               }
+           );
+
+            // disable XML formatter (causes JSON to be default)
+            MediaTypeHeaderValue xmlMediaType = config.Formatters.XmlFormatter
+                .SupportedMediaTypes
+                .FirstOrDefault(mt => mt.MediaType == "application/xml");
+            config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(
+                xmlMediaType);
         }
     }
 }
