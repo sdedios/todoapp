@@ -79,10 +79,6 @@
     <Reference Include="System.Web.Optimization">
       <HintPath>..\lib\ASP.NET MVC 5\System.Web.Optimization.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\ASP.NET MVC 5\System.Web.Razor.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\ASP.NET MVC 5\System.Web.WebPages.dll</HintPath>
@@ -111,7 +107,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\css\" />
     <Folder Include="app\img\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
@@ -135,12 +130,19 @@
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\bootstrap.js" />
+    <Content Include="app\controllers\app.js" />
+    <Content Include="app\controllers\dashboard.js" />
+    <Content Include="app\controllers\login.js" />
     <Content Include="app\controllers\project.js" />
     <Content Include="app\controllers\projects.js" />
+    <Content Include="app\css\app.css" />
     <Content Include="app\index.html" />
     <Content Include="app\lib\jquery.js" />
     <Content Include="app\routes.js" />
+    <Content Include="app\services\profileApi.js" />
     <Content Include="app\services\projectApi.js" />
+    <Content Include="app\views\dashboard.html" />
+    <Content Include="app\views\login.html" />
     <Content Include="app\views\project.html" />
     <Content Include="app\views\projects.html" />
     <Content Include="favicon.ico" />
@@ -164,8 +166,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\Shared\Error.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

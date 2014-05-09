@@ -19,10 +19,7 @@ define(
                 var projectId = $routeParams.projectId;
 
                 // define page data
-                $scope.page =
-                {
-                    projectId: projectId
-                };
+                $scope.projectId = projectId;
 
                 // define page methods
             });

@@ -12,10 +12,26 @@ define(
     {
         // return routes data structure
         return {
-            defaultRoutePath : '/',
+            defaultRoutePath : '/login',
             routes:
             {
-                '/': 
+                '/login':
+                {
+                    templateUrl: 'app/views/login.html',
+                    dependencies:
+                    [
+                        'controllers/login'
+                    ]
+                },
+                '/dashboard':
+                {
+                    templateUrl: 'app/views/dashboard.html',
+                    dependencies:
+                    [
+                        'controllers/dashboard'
+                    ]
+                },
+                '/projects':
                 {
                     templateUrl: 'app/views/projects.html',
                     dependencies:

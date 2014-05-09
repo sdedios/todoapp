@@ -1,12 +1,5 @@
 ﻿<div ng-controller="ProjectsController">
     <div>
-        <h1>{{page.heading}}</h1>
-        <label>Name:</label>
-        <input type="text" ng-model="page.username" placeholder="Enter a name here">
-        <hr>
-        <h2>Hello {{page.username}}!</h2>
-    </div>
-    <div>
         <input type="text" ng-model="search" class="search-query" placeholder="Search" />
         <table>
             <thead>
@@ -21,7 +14,7 @@
                     <td><a href="#">{{project.name}}</a></td>
                     <td>{{project.owner}}</td>
                     <td>
-                        <a href="#/edit/{{project.$id}}"><i class="icon-pencil"></i></a>
+                        <a href="#/projects/{{project.id}}"><i class="icon-pencil">edit</i></a>
                     </td>
                 </tr>
             </tbody>

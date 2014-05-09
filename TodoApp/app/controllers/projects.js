@@ -14,16 +14,9 @@ define(
     {
         // create controller
         app.controller('ProjectsController',
-            function ($scope, ProjectApi)
+            function ($scope, projectApi)
             {
-                // define page data
-                $scope.page =
-                {
-                    heading: 'Welcome',
-                    username: 'Nascent'
-                };
-
                 // query projects
-                $scope.projects = ProjectApi.query();
+                $scope.projects = projectApi.query();
             });
     });

@@ -5,7 +5,7 @@ define(
 
     // load dependencies
     [
-        'routes'
+        'routes',
     ],
 
     // define module
@@ -19,85 +19,75 @@ define(
         ]);
 
         // configure app module
-        app.config(
-        [
-            '$routeProvider',
-            '$locationProvider',
-            '$resourceProvider',
-            '$controllerProvider',
-            '$filterProvider',
-            '$provide',
+        app.config(function ($routeProvider, $locationProvider,
+            $resourceProvider, $controllerProvider, $filterProvider, $provide)
+        {
+            // setup app module as a service locator
+            app.resource = $resourceProvider.register;
+            app.controller = $controllerProvider.register;
+            app.filter = $filterProvider.register;
+            app.factory = $provide.factory;
+            app.service = $provide.service;
 
-            function ($routeProvider, $locationProvider, $resourceProvider,
-                $controllerProvider, $filterProvider, $provide)
+            // configure location provide to be html5 compliant
+            $locationProvider.html5Mode(true);
+
+            // bind explicit routes
+            if (config.routes !== undefined)
             {
-                // setup app module as a service locator
-                app.resource = $resourceProvider.register;
-                app.controller = $controllerProvider.register;
-                app.filter = $filterProvider.register;
-                app.factory = $provide.factory;
-                app.service = $provide.service;
-
-                // configure location provide to be html5 compliant
-                $locationProvider.html5Mode(true);
-
-                // bind explicit routes
-                if (config.routes !== undefined)
+                // define dependency resolver
+                var createResolver = function (dependencies)
                 {
-                    // define dependency resolver
-                    var createResolver = function (dependencies)
+                    // create angular resolver
+                    var instance =
                     {
-                        // create angular resolver
-                        var instance =
-                        {
-                            resolver: ['$q', '$rootScope',
-                                function ($q, $rootScope)
-                                {
-                                    // create promise scope
-                                    var deferred = $q.defer();
-
-                                    // asynchronously load dependency using require.js
-                                    require(dependencies, function ()
-                                    {
-                                        // signal promise after loading
-                                        $rootScope.$apply(function ()
-                                        {
-                                            deferred.resolve();
-                                        });
-                                    });
-
-                                    // return promise
-                                    return deferred.promise;
-                                }]
-                        }
-
-                        // return instance
-                        return instance;
-                    };
-
-                    // load all routes
-                    angular.forEach(config.routes,
-                        function (route, path)
-                        {
-                            // add route to provider
-                            $routeProvider.when(path,
+                        resolver: ['$q', '$rootScope',
+                            function ($q, $rootScope)
                             {
-                                templateUrl: route.templateUrl,
-                                resolve: createResolver(route.dependencies)
-                            });
-                        });
-                }
+                                // create promise scope
+                                var deferred = $q.defer();
 
-                // bind default route
-                if (config.defaultRoutePaths !== undefined)
-                {
-                    $routeProvider.otherwise(
+                                // asynchronously load dependency using require.js
+                                require(dependencies, function ()
+                                {
+                                    // signal promise after loading
+                                    $rootScope.$apply(function ()
+                                    {
+                                        deferred.resolve();
+                                    });
+                                });
+
+                                // return promise
+                                return deferred.promise;
+                            }]
+                    }
+
+                    // return instance
+                    return instance;
+                };
+
+                // load all routes
+                angular.forEach(config.routes,
+                    function (route, path)
                     {
-                        redirectTo: config.defaultRoutePaths
+                        // add route to provider
+                        $routeProvider.when(path,
+                        {
+                            templateUrl: route.templateUrl,
+                            resolve: createResolver(route.dependencies)
+                        });
                     });
-                }
             }
-        ]);
+
+            // bind default route
+            if (config.defaultRoutePath !== undefined)
+            {
+                $routeProvider.otherwise(
+                {
+                    redirectTo: config.defaultRoutePath
+                });
+            }
+        });
 
         // return app module
         return app;

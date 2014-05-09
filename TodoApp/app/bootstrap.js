@@ -6,6 +6,7 @@ require.config(
     paths:
     {
         'jquery': 'lib/jquery',
+        'bootstrap': '//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js',
         'angular': 'lib/angular',
         'angular-route': 'lib/angular-route',
         'angular-resource': 'lib/angular-resource'
@@ -14,6 +15,13 @@ require.config(
     // module dependencies
     shim:
     {
+        'bootstrap':
+        {
+            deps:
+            [
+                'jquery'
+            ]
+        },
         'angular-route':
         {
             deps:
@@ -33,9 +41,17 @@ require.config(
             deps:
             [
                 'jquery',
+                'bootstrap',
                 'angular',
                 'angular-route',
                 'angular-resource'
+            ]
+        },
+        'controllers/app':
+        {
+            deps:
+            [
+                'app'
             ]
         }
     }
@@ -46,11 +62,11 @@ require(
 
     // define app dependencies
     [
-        'app'
+        'controllers/app'
     ],
 
     // manually bootstrap document w/ angular
-    function (app)
+    function ()
     {
         angular.bootstrap(document, ['app']);
     }

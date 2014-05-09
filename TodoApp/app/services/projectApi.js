@@ -12,7 +12,7 @@ define(
     function (app)
     {
         // define singleton for service client
-        app.factory('ProjectApi', function ($resource)
+        app.factory('projectApi', function ($resource)
         {
             // TODO: configure project api instance
             var projectApi = $resource('api/project/:projectId',
